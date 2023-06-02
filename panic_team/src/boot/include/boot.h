@@ -1,17 +1,12 @@
-//
-// Created by per on 1/4/23.
-//
-
 #ifndef UIAOS_BOOT_H
 #define UIAOS_BOOT_H
 
-
 #include <stdint.h>
 /* The magic field should contain this.  */
-#define MULTIBOOT_HEADER_MAGIC			0x1BADB002
+#define MULTIBOOT_HEADER_MAGIC 0x1BADB002
 
 /* This should be in %eax.  */
-#define MULTIBOOT_BOOTLOADER_MAGIC		0x2BADB002
+#define MULTIBOOT_BOOTLOADER_MAGIC 0x2BADB002
 
 typedef unsigned int multiboot_uint32_t;
 struct multiboot_header
@@ -39,17 +34,19 @@ struct multiboot_header
     multiboot_uint32_t depth;
 };
 
-struct multiboot_tag {
+struct multiboot_tag
+{
     uint32_t type;
     uint32_t size;
 };
 
-struct multiboot_info {
+struct multiboot_info
+{
     uint32_t total_size;
     uint32_t reserved;
     struct multiboot_tag tags[0];
 };
 
-//extern multiboot_header multiboot;
-void init_multiboot(uint32_t magic /*eax*/, uint32_t* info /*ebx*/);
-#endif //UIAOS_BOOT_H
+extern multiboot_header multiboot;
+
+#endif // UIAOS_BOOT_H
